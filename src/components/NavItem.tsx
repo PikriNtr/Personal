@@ -113,7 +113,7 @@ const NavItem = ({
                   <HoverVideoPlayer
                     thumbnailSrc="/caredit.jpg"
                     videoSrc="/caredit.mp4"
-                    linkUrl="https://www.instagram.com/p/Cld_BYaPbY8"
+                    linkUrl="#"
                     title="Nissan GTR R34"
                     software="Alight Motion"
                     description="First Car Edit"
@@ -121,7 +121,7 @@ const NavItem = ({
                   <HoverVideoPlayer
                     thumbnailSrc="/feb.png"
                     videoSrc="/feb.mp4"
-                    linkUrl="https://www.instagram.com/p/Cld_BYaPbY8"
+                    linkUrl="#"
                     title="Something"
                     software="After Effect CC 2019"
                     description="Something idk"
@@ -129,7 +129,7 @@ const NavItem = ({
                   <HoverVideoPlayer
                     thumbnailSrc="/nianely.jpg"
                     videoSrc="/nianely.mp4"
-                    linkUrl="https://www.instagram.com/p/Cld_BYaPbY8"
+                    linkUrl="#"
                     title="Intro 2D Request"
                     software="Alight Motion and After Effect CC 2019"
                     description="Special thanks to Mevyx for helping me to make this intro"
@@ -137,7 +137,7 @@ const NavItem = ({
                   <HoverVideoPlayer
                     thumbnailSrc="/shikimori.png"
                     videoSrc="/shikimori.mp4"
-                    linkUrl="https://www.instagram.com/p/Cld_BYaPbY8"
+                    linkUrl="#"
                     title="AMV Shikimori"
                     software="After Effect CC 2019"
                     description="Really love Shikimori, so i make this AMV"
@@ -145,7 +145,7 @@ const NavItem = ({
                   <HoverVideoPlayer
                     thumbnailSrc="/yrlplyz.png"
                     videoSrc="/yrlplyz.mp4"
-                    linkUrl="https://www.instagram.com/p/Cld_BYaPbY8"
+                    linkUrl="#"
                     title="2.5D Intro Request"
                     software="Cinema 4D and After Effect CC 2019"
                     description="First 2.5 Intro"
