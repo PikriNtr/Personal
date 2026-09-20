@@ -36,15 +36,17 @@ const HoverVideoPlayer = ({
 
     useEffect(() => {
         if (isHovered && videoRef.current) {
-            videoRef.current.controls = false;
-            // React sometimes fails to tell the browser the video is muted when rendering dynamically. 
-            // We force it here before playing so the browser doesn't block it.
-            videoRef.current.defaultMuted = true;
-            videoRef.current.muted = true;
-            
-            // Force the video to play when it appears
-            videoRef.current.play().catch((e) => {
-                console.log("Autoplay prevented by browser:", e);
+            const video = videoRef.current;
+            video.controls = false;
+
+            // Try to play with sound first. Browsers block unmuted autoplay
+            // until the user has interacted with the page (any click counts),
+            // so we fall back to muted when it's not allowed yet.
+            video.muted = false;
+            video.play().catch(() => {
+                video.defaultMuted = true;
+                video.muted = true;
+                video.play().catch(() => {});
             });
         }
     }, [isHovered]);
