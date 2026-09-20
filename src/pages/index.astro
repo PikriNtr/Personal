@@ -1,0 +1,124 @@
+---
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+import '../styles/globals.css';
+
+import Navbar from '@/components/Navbar';
+import MaxWidthWrapper from '@/components/MaxWidthWrapper';
+import { buttonVariants } from '@/components/ui/button';
+import HoverVideoPlayer from '@/components/HoverVideoPlayer';
+---
+
+<html lang="en" class="h-full no-scrollbar dark:bg-[#161616] dark:text-white">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="This is a simple portofolio website that using Astro, Typescript, and Tailwind as a styling"
+    />
+    <title>PikriNtr Personal Portofolio Website</title>
+  </head>
+  <body class="relative h-full font-sans antialiased dark:bg-[#161616] dark:text-white">
+    <main class="relative flex flex-col min-h-screen dark:bg-[#161616]">
+      <Navbar client:load />
+      <div class="flex-grow flex-1 dark:bg-[#161616] dark:text-white">
+        <MaxWidthWrapper>
+          <div class="mt-40 dark:bg-[#161616] dark:text-white">
+            <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl left-[-50px] dark:text-white">
+              Fikri Haikal
+              <span class="text-blue-600">
+                (PikriNtr)
+              </span>
+              .
+            </h1>
+            <p class="text-gray-900 font-normal ml-1 mt-[10px] text-2xl dark:text-white">
+              wasting time to code/game
+            </p>
+          </div>
+          <div class="py-[150px] mt-[-120px] max-w-3xl dark:bg-[#161616]">
+            <p class="text-lg max-w-prose text-muted-foreground">code JS. learning C++, Ruby and play osu!</p>
+            <div class="flex flex-col sm:flex-row gap-4 mt-6">
+              <a href="https://github.com/PikriNtr" class={`w-1/3 sm:w-auto ${buttonVariants()}`}>Github Profile</a>
+              <a href="https://github.com/PikriNtr/Portofolio" class={`w-1/3 sm:w-auto ${buttonVariants()}`}>
+                This Project &rarr;
+              </a>
+            </div>
+          </div>
+        </MaxWidthWrapper>
+
+        <section class="dark:bg-[#161616]">
+          <MaxWidthWrapper>
+            <div class="mt-72">
+              <h1></h1>
+            </div>
+          </MaxWidthWrapper>
+        </section>
+
+        <section class="dark:bg-[#161616] ">
+          <MaxWidthWrapper class="py-[150px]">
+            <div class="flex flex-col gap-4">
+              <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl left-[-50px] dark:text-white">
+                My Project
+              </h1>
+              <p class="text-gray-900 font-normal ml-1 mt-[10px] text-2xl dark:text-white">
+                Some of my project that I made
+              </p>
+            </div>
+            <div class="mt-10">
+              <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                <HoverVideoPlayer
+                  client:visible
+                  thumbnailSrc="/nianely.jpg"
+                  videoSrc="/nianely.mp4"
+                  linkUrl="https://www.instagram.com/p/Cld_BYaPbY8"
+                  title="Nianely"
+                  software="Alight Motion"
+                  description="Intro 2D"
+                />
+                <HoverVideoPlayer
+                  client:visible
+                  thumbnailSrc="/shikimori.png"
+                  videoSrc="/shikimori.mp4"
+                  linkUrl="https://www.instagram.com/p/Cld_BYaPbY8"
+                  title="AMV Shikimori"
+                  software="After Effect CC 2019"
+                  description="Really love Shikimori, so i make this AMV"
+                />
+                <HoverVideoPlayer
+                  client:visible
+                  thumbnailSrc="/yrlplyz.png"
+                  videoSrc="/yrlplyz.mp4"
+                  linkUrl="https://www.instagram.com/p/Cld_BYaPbY8"
+                  title="2.5D Intro Request"
+                  software="Cinema 4D and After Effect CC 2019"
+                  description="First 2.5 Intro"
+                />
+                <HoverVideoPlayer
+                  client:visible
+                  thumbnailSrc="/caredit.jpg"
+                  videoSrc="/caredit.mp4"
+                  linkUrl="https://www.instagram.com/p/Cld_BYaPbY8"
+                  title="Nissan GTR R34"
+                  software="Alight Motion"
+                  description="First Car Edit"
+                />
+                <HoverVideoPlayer
+                  client:visible
+                  thumbnailSrc="/feb.png"
+                  videoSrc="/feb.mp4"
+                  linkUrl="https://www.instagram.com/p/Cld_BYaPbY8"
+                  title="Something"
+                  software="After Effect CC 2019"
+                  description="Something idk"
+                />
+              </div>
+            </div>
+          </MaxWidthWrapper>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
