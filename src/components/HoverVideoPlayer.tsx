@@ -8,10 +8,11 @@ interface HoverVideoPlayerProps {
     linkUrl?: string;
     containerClassName?: string;
     videoClassName?: string;
-    imageClassName?: string;
     title?: string;
     software?: string;
     description?: string;
+    /** Buffer the video up-front. Use only on the first 1-2 cards. */
+    eager?: boolean;
 }
 
 const HoverVideoPlayer = ({
@@ -23,7 +24,7 @@ const HoverVideoPlayer = ({
     description,
     containerClassName = 'w-full relative overflow-hidden cursor-pointer',
     videoClassName = "w-full h-full object-cover",
-    imageClassName = "w-full h-full object-cover"
+    eager = false
 }: HoverVideoPlayerProps) => {
     const [isHovered, setIsHovered] = useState(false);
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -35,8 +36,10 @@ const HoverVideoPlayer = ({
     };
 
     useEffect(() => {
-        if (isHovered && videoRef.current) {
-            const video = videoRef.current;
+        const video = videoRef.current;
+        if (!video) return;
+
+        if (isHovered) {
             video.controls = false;
 
             // Try to play with sound first. Browsers block unmuted autoplay
@@ -44,34 +47,35 @@ const HoverVideoPlayer = ({
             // so we fall back to muted when it's not allowed yet.
             video.muted = false;
             video.play().catch(() => {
-                video.defaultMuted = true;
                 video.muted = true;
                 video.play().catch(() => {});
             });
+        } else {
+            video.pause();
+            video.currentTime = 0;
+            video.muted = true;
         }
     }, [isHovered]);
 
      return (
         <div className="flex flex-col group relative text-base sm:text-sm">
-        {/* Video / Image Container */}
+        {/* Video Container — always mounted so hover starts instantly.
+            The poster shows until the first frame plays. */}
         <div
             className={`relative aspect-video overflow-hidden rounded-lg scale-[1.05px] bg-white dark:bg-gray-900 group-hover:opacity-75 ${containerClassName}`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onClick={handleClick}
         >
-            {!isHovered ? (
-            <img src={thumbnailSrc} alt={title || "Thumbnail"} className={imageClassName} />
-            ) : (
-            <video 
-                ref={videoRef} 
-                src={videoSrc} 
-                autoPlay 
+            <video
+                ref={videoRef}
+                src={videoSrc}
+                poster={thumbnailSrc}
+                preload={eager ? "auto" : "metadata"}
                 loop
-                playsInline // Critical for autoplay in many browsers
-                className={videoClassName} 
+                playsInline
+                className={videoClassName}
             />
-            )}
         </div>
         {/* Text Content Below the Video */}
         <div className="mt-3 flex flex-col">
@@ -81,11 +85,11 @@ const HoverVideoPlayer = ({
                 {software}
             </span>
             )}
-            
+
             {/* Video Name (Bold & prominent) */}
             {title && (
-            <a 
-                href={linkUrl} 
+            <a
+                href={linkUrl}
                 className="block font-medium text-gray-900 dark:text-gray-100 text-lg">
                 {title}
             </a>
