@@ -19,7 +19,15 @@ import HoverVideoPlayer from '@/components/HoverVideoPlayer';
       name="description"
       content="This is a simple portofolio website that using Astro, Typescript, and Tailwind as a styling"
     />
+    <!-- OG Image / Domain placeholder (ganti domain akhirnya) -->
+    <link rel="preload" as="image" href="/og.png" />
     <title>PikriNtr Personal Portofolio Website</title>
+    <meta property="og:title" content="PikriNtr — Video Editor & Developer" />
+    <meta property="og:description" content="Portfolio showcasing my video editing work (AMV, car edit, intro)." />
+    <meta property="og:image" content="https://pikrintr.vercel.app/og.png" />
+    <meta property="og:url" content="https://pikrintr.vercel.app/" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="/favicon.svg" />
   </head>
   <body class="relative h-full font-sans antialiased dark:bg-[#161616] dark:text-white">
     <main class="relative flex flex-col min-h-screen dark:bg-[#161616]">
@@ -71,9 +79,10 @@ import HoverVideoPlayer from '@/components/HoverVideoPlayer';
               <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 <HoverVideoPlayer
                   client:visible
+                  eager={true}
                   thumbnailSrc="/nianely.jpg"
                   videoSrc="/nianely.mp4"
-                  linkUrl="https://www.instagram.com/p/Cld_BYaPbY8"
+                  linkUrl="#"
                   title="Nianely"
                   software="Alight Motion"
                   description="Intro 2D"
@@ -82,7 +91,7 @@ import HoverVideoPlayer from '@/components/HoverVideoPlayer';
                   client:visible
                   thumbnailSrc="/shikimori.png"
                   videoSrc="/shikimori.mp4"
-                  linkUrl="https://www.instagram.com/p/Cld_BYaPbY8"
+                  linkUrl="#"
                   title="AMV Shikimori"
                   software="After Effect CC 2019"
                   description="Really love Shikimori, so i make this AMV"
@@ -91,7 +100,7 @@ import HoverVideoPlayer from '@/components/HoverVideoPlayer';
                   client:visible
                   thumbnailSrc="/yrlplyz.png"
                   videoSrc="/yrlplyz.mp4"
-                  linkUrl="https://www.instagram.com/p/Cld_BYaPbY8"
+                  linkUrl="#"
                   title="2.5D Intro Request"
                   software="Cinema 4D and After Effect CC 2019"
                   description="First 2.5 Intro"
@@ -100,7 +109,7 @@ import HoverVideoPlayer from '@/components/HoverVideoPlayer';
                   client:visible
                   thumbnailSrc="/caredit.jpg"
                   videoSrc="/caredit.mp4"
-                  linkUrl="https://www.instagram.com/p/Cld_BYaPbY8"
+                  linkUrl="#"
                   title="Nissan GTR R34"
                   software="Alight Motion"
                   description="First Car Edit"
@@ -109,7 +118,7 @@ import HoverVideoPlayer from '@/components/HoverVideoPlayer';
                   client:visible
                   thumbnailSrc="/feb.png"
                   videoSrc="/feb.mp4"
-                  linkUrl="https://www.instagram.com/p/Cld_BYaPbY8"
+                  linkUrl="#"
                   title="Something"
                   software="After Effect CC 2019"
                   description="Something idk"
