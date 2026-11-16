@@ -48,6 +48,13 @@ export default async function handler(_req, res) {
 
     const song = await response.json();
 
+    // Podcasts/ads have no track item
+    if (!song.item) {
+      return res.status(200).json({ isPlaying: false });
+    }
+
+    res.setHeader('Cache-Control', 's-maxage=15, stale-while-revalidate=30');
+
     res.status(200).json({
       isPlaying: song.is_playing,
       title: song.item.name,
