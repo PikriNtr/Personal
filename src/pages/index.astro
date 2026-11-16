@@ -1,133 +1,351 @@
 ---
-import '@fontsource/inter/400.css';
-import '@fontsource/inter/500.css';
-import '@fontsource/inter/600.css';
-import '@fontsource/inter/700.css';
-import '../styles/globals.css';
+import '../styles/global.css';
 
-import Navbar from '@/components/Navbar';
-import MaxWidthWrapper from '@/components/MaxWidthWrapper';
-import { buttonVariants } from '@/components/ui/button';
-import HoverVideoPlayer from '@/components/HoverVideoPlayer';
+// Replace the "#" links with the real post/video URL (Instagram / YouTube / Drive).
+const projects = [
+  {
+    title: 'Nianely',
+    software: 'Alight Motion',
+    description: 'Intro 2D. Special thanks to Mevyx for helping me to make this intro',
+    thumb: '/nianely.jpg',
+    video: '/nianely.mp4',
+    href: '#',
+  },
+  {
+    title: 'AMV Shikimori',
+    software: 'After Effect CC 2019',
+    description: 'Really love Shikimori, so i make this AMV',
+    thumb: '/shikimori.png',
+    video: '/shikimori.mp4',
+    href: '#',
+  },
+  {
+    title: '2.5D Intro Request',
+    software: 'Cinema 4D and After Effect CC 2019',
+    description: 'First 2.5 Intro',
+    thumb: '/yrlplyz.png',
+    video: '/yrlplyz.mp4',
+    href: '#',
+  },
+  {
+    title: 'Nissan GTR R34',
+    software: 'Alight Motion',
+    description: 'First Car Edit',
+    thumb: '/caredit.jpg',
+    video: '/caredit.mp4',
+    href: '#',
+  },
+  {
+    title: 'Something',
+    software: 'After Effect CC 2019',
+    description: 'Something idk',
+    thumb: '/feb.png',
+    video: '/feb.mp4',
+    href: '#',
+  },
+];
+
+const skills = [
+  { name: 'JavaScript', note: 'What I mostly code in.' },
+  { name: 'C++', note: 'Still learning.' },
+  { name: 'Ruby', note: 'Still learning.' },
+  { name: 'Astro & TypeScript', note: 'What this site is built with.' },
+  { name: 'After Effects CC 2019', note: 'AMV, intros and text animation.' },
+  { name: 'Cinema 4D', note: '2.5D intros, together with After Effects.' },
+  { name: 'Alight Motion', note: '2D intros and car edits.' },
+];
+
+const faq = [
+  {
+    q: 'Do you take requests?',
+    a: 'Yes. I have made intros (2D and 2.5D), an AMV and a car edit. Message me on Instagram with what you have in mind.',
+  },
+  {
+    q: 'What software do you use?',
+    a: 'After Effects CC 2019, Cinema 4D and Alight Motion, depending on the project.',
+  },
+  {
+    q: 'Where can I see more?',
+    a: 'The Projects section above has everything so far. Hover a preview to play it.',
+  },
+];
 ---
 
-<html lang="en" class="h-full no-scrollbar dark:bg-[#161616] dark:text-white">
+<!doctype html>
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PikriNtr Personal Portofolio Website</title>
     <meta
       name="description"
-      content="This is a simple portofolio website that using Astro, Typescript, and Tailwind as a styling"
+      content="This is a simple portofolio website that using Astro and TypeScript"
     />
-    <!-- OG Image / Domain placeholder (ganti domain akhirnya) -->
-    <link rel="preload" as="image" href="/og.png" />
-    <title>PikriNtr Personal Portofolio Website</title>
+    <meta name="theme-color" content="#131314" />
     <meta property="og:title" content="PikriNtr — Video Editor & Developer" />
-    <meta property="og:description" content="Portfolio showcasing my video editing work (AMV, car edit, intro)." />
-    <meta property="og:image" content="https://pikrintr.vercel.app/og.png" />
-    <meta property="og:url" content="https://pikrintr.vercel.app/" />
+    <meta
+      property="og:description"
+      content="Portfolio showcasing my video editing work (AMV, car edit, intro)."
+    />
+    <meta property="og:image" content="https://pikrintr.my.id/og.png" />
+    <meta property="og:url" content="https://pikrintr.my.id/" />
     <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PikriNtr — Video Editor & Developer" />
+    <meta name="twitter:image" content="https://pikrintr.my.id/og.png" />
+    <link rel="canonical" href="https://pikrintr.my.id/" />
+    <link rel="sitemap" href="/sitemap.xml" />
     <link rel="icon" href="/favicon.svg" />
+    <link rel="preload" as="image" href="/nianely.jpg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Calligraffitti&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Apply the saved theme before first paint so there is no flash -->
+    <script is:inline>
+      try {
+        document.documentElement.dataset.theme =
+          localStorage.getItem('theme') === 'light' ? 'light' : 'dark';
+      } catch (e) {}
+    </script>
   </head>
-  <body class="relative h-full font-sans antialiased dark:bg-[#161616] dark:text-white">
-    <main class="relative flex flex-col min-h-screen dark:bg-[#161616]">
-      <Navbar client:load />
-      <div class="flex-grow flex-1 dark:bg-[#161616] dark:text-white">
-        <MaxWidthWrapper>
-          <div class="mt-40 dark:bg-[#161616] dark:text-white">
-            <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl left-[-50px] dark:text-white">
-              Fikri Haikal
-              <span class="text-blue-600">
-                (PikriNtr)
-              </span>
-              .
-            </h1>
-            <p class="text-gray-900 font-normal ml-1 mt-[10px] text-2xl dark:text-white">
-              wasting time to code/game
+  <body>
+    <main>
+      <section class="hero" id="top">
+        <header class="topbar">
+          <div class="wrap">
+            <a class="brand" href="/">PikriNtr</a>
+            <nav aria-label="Main">
+              <a href="#projects">Projects</a>
+              <a href="#request">Request</a>
+              <a href="https://paypal.me/PikriNtr" target="_blank" rel="noopener">Donate</a>
+              <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle light/dark theme">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+                </svg>
+              </button>
+            </nav>
+          </div>
+        </header>
+        <img
+          class="hero-img"
+          src="/nianely.jpg"
+          width="1080"
+          height="608"
+          alt="Nianely 2D intro, one of PikriNtr's video edits"
+          fetchpriority="high"
+        />
+        <div class="hero-text wrap">
+          <h1>PikriNtr</h1>
+        </div>
+      </section>
+
+      <section class="intro wrap">
+        <div>
+          <p class="lead">Fikri Haikal, wasting time to code/game.</p>
+          <p class="now-playing" id="now-playing" hidden></p>
+        </div>
+        <div>
+          <div class="actions">
+            <a class="btn btn-primary" href="https://github.com/PikriNtr">Github Profile</a>
+            <a class="btn" href="https://github.com/PikriNtr/Portofolio">This Project &rarr;</a>
+          </div>
+          <p class="meta">Video Editor &amp; Developer</p>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="wrap split">
+          <h2>About</h2>
+          <div class="prose">
+            <p>code JS. learning C++, Ruby and play osu!</p>
+            <p>
+              Portfolio showcasing my video editing work (AMV, car edit, intro).
             </p>
           </div>
-          <div class="py-[150px] mt-[-120px] max-w-3xl dark:bg-[#161616]">
-            <p class="text-lg max-w-prose text-muted-foreground">code JS. learning C++, Ruby and play osu!</p>
-            <div class="flex flex-col sm:flex-row gap-4 mt-6">
-              <a href="https://github.com/PikriNtr" class={`w-1/3 sm:w-auto ${buttonVariants()}`}>Github Profile</a>
-              <a href="https://github.com/PikriNtr/Portofolio" class={`w-1/3 sm:w-auto ${buttonVariants()}`}>
-                This Project &rarr;
-              </a>
+        </div>
+        <div class="collage">
+          <img class="c-a" src="/shikimori.png" width="893" height="379" loading="lazy" alt="AMV Shikimori frame" />
+          <img class="c-b" src="/yrlplyz.png" width="1920" height="1080" loading="lazy" alt="2.5D intro frame" />
+          <img class="c-c" src="/feb.png" width="576" height="340" loading="lazy" alt="Text animation frame" />
+        </div>
+      </section>
+
+      <section class="section" id="skills">
+        <div class="wrap split">
+          <h2>Skills</h2>
+          <dl class="features">
+            {skills.map((k) => (
+              <div>
+                <dt>{k.name}</dt>
+                <dd>{k.note}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="wrap split">
+          <h2>Projects</h2>
+          <div>
+            <p class="projects-intro">Some of my project that I made</p>
+            <ul class="projects">
+              {projects.map((p, i) => (
+                <li class="project">
+                  <div>
+                    <p class="project-software">{p.software}</p>
+                    <h3 class="project-title">
+                      {p.href && p.href !== '#' ? <a href={p.href}>{p.title}</a> : p.title}
+                    </h3>
+                    <p class="project-desc">{p.description}</p>
+                  </div>
+                  <div class="project-media" data-playing="false">
+                    <video
+                      src={p.video}
+                      poster={p.thumb}
+                      preload={i === 0 ? 'auto' : 'metadata'}
+                      loop
+                      muted
+                      playsinline
+                    ></video>
+                    <span class="play-badge">&#9654; Preview</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="request">
+        <div class="wrap split">
+          <h2>Request</h2>
+          <div>
+            <dl class="faq">
+              {faq.map((f) => (
+                <div>
+                  <dt>{f.q}</dt>
+                  <dd>{f.a}</dd>
+                </div>
+              ))}
+            </dl>
+            <div class="actions" style="margin-top: 2rem">
+              <a class="btn btn-primary" href="https://www.instagram.com/pikrintr/" target="_blank" rel="noopener">Message on Instagram</a>
             </div>
           </div>
-        </MaxWidthWrapper>
+        </div>
+      </section>
 
-        <section class="dark:bg-[#161616]">
-          <MaxWidthWrapper>
-            <div class="mt-72">
-              <h1></h1>
-            </div>
-          </MaxWidthWrapper>
-        </section>
-
-        <section class="dark:bg-[#161616] ">
-          <MaxWidthWrapper class="py-[150px]">
-            <div class="flex flex-col gap-4">
-              <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl left-[-50px] dark:text-white">
-                My Project
-              </h1>
-              <p class="text-gray-900 font-normal ml-1 mt-[10px] text-2xl dark:text-white">
-                Some of my project that I made
-              </p>
-            </div>
-            <div class="mt-10">
-              <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                <HoverVideoPlayer
-                  client:visible
-                  eager={true}
-                  thumbnailSrc="/nianely.jpg"
-                  videoSrc="/nianely.mp4"
-                  linkUrl="#"
-                  title="Nianely"
-                  software="Alight Motion"
-                  description="Intro 2D"
-                />
-                <HoverVideoPlayer
-                  client:visible
-                  thumbnailSrc="/shikimori.png"
-                  videoSrc="/shikimori.mp4"
-                  linkUrl="#"
-                  title="AMV Shikimori"
-                  software="After Effect CC 2019"
-                  description="Really love Shikimori, so i make this AMV"
-                />
-                <HoverVideoPlayer
-                  client:visible
-                  thumbnailSrc="/yrlplyz.png"
-                  videoSrc="/yrlplyz.mp4"
-                  linkUrl="#"
-                  title="2.5D Intro Request"
-                  software="Cinema 4D and After Effect CC 2019"
-                  description="First 2.5 Intro"
-                />
-                <HoverVideoPlayer
-                  client:visible
-                  thumbnailSrc="/caredit.jpg"
-                  videoSrc="/caredit.mp4"
-                  linkUrl="#"
-                  title="Nissan GTR R34"
-                  software="Alight Motion"
-                  description="First Car Edit"
-                />
-                <HoverVideoPlayer
-                  client:visible
-                  thumbnailSrc="/feb.png"
-                  videoSrc="/feb.mp4"
-                  linkUrl="#"
-                  title="Something"
-                  software="After Effect CC 2019"
-                  description="Something idk"
-                />
-              </div>
-            </div>
-          </MaxWidthWrapper>
-        </section>
-      </div>
+      <section class="section" id="links">
+        <div class="wrap split">
+          <h2>Links</h2>
+          <ul class="link-list">
+            <li>
+              <a href="https://github.com/PikriNtr">GitHub</a>
+              <span>github.com/PikriNtr</span>
+            </li>
+            <li>
+              <a href="https://github.com/PikriNtr/Portofolio">This Project</a>
+              <span>Source of this website</span>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/pikrintr/" target="_blank" rel="noopener">Instagram</a>
+              <span>@pikrintr</span>
+            </li>
+            <li>
+              <a href="https://osu.ppy.sh/users/32454160" target="_blank" rel="noopener">osu!</a>
+              <span>osu.ppy.sh/users/32454160</span>
+            </li>
+            <li>
+              <a href="https://paypal.me/PikriNtr">Donate</a>
+              <span>paypal.me/PikriNtr</span>
+            </li>
+          </ul>
+        </div>
+      </section>
     </main>
+
+    <footer class="site-footer">
+      <img class="footer-img" src="/caredit.jpg" width="1080" height="608" loading="lazy" alt="Nissan GTR R34 car edit frame" />
+      <div class="wrap split">
+        <p class="copy">&copy; PikriNtr 2026</p>
+        <div class="small">
+          <p>Layout inspired by bambosan.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Theme toggle (saved in localStorage, applied early by the inline script in <head>)
+      const root = document.documentElement;
+      document.getElementById('theme-toggle')?.addEventListener('click', () => {
+        const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+        root.dataset.theme = next;
+        try { localStorage.setItem('theme', next); } catch (e) {}
+      });
+
+      // Spotify "now playing" (served by /api/now-playing on Vercel; stays hidden if nothing plays or the API is missing)
+      const np = document.getElementById('now-playing');
+      const loadNowPlaying = async () => {
+        if (!np) return;
+        try {
+          const res = await fetch('/api/now-playing');
+          if (!res.ok) throw new Error('no api');
+          const d = await res.json();
+          if (d.isPlaying && d.title) {
+            np.replaceChildren();
+            const a = document.createElement('a');
+            a.href = d.songUrl;
+            a.target = '_blank';
+            a.rel = 'noopener';
+            a.textContent = `${d.title} \u2014 ${d.artist}`;
+            np.append('\u{1F3A7} listening to ', a);
+            np.hidden = false;
+          } else {
+            np.hidden = true;
+          }
+        } catch (e) {
+          np.hidden = true;
+        }
+      };
+      loadNowPlaying();
+      setInterval(loadNowPlaying, 30000);
+
+      // Hover video previews: play on hover (with sound if the browser allows), reset on leave.
+      // On touch screens a tap toggles playback.
+      document.querySelectorAll<HTMLElement>('.project-media').forEach((box) => {
+        const video = box.querySelector('video');
+        if (!video) return;
+
+        const start = () => {
+          video.muted = false;
+          video.play().catch(() => {
+            video.muted = true;
+            video.play().catch(() => {});
+          });
+          box.dataset.playing = 'true';
+        };
+        const stop = () => {
+          video.pause();
+          video.currentTime = 0;
+          video.muted = true;
+          box.dataset.playing = 'false';
+        };
+
+        const canHover = window.matchMedia('(hover: hover)').matches;
+        if (canHover) {
+          box.addEventListener('mouseenter', start);
+          box.addEventListener('mouseleave', stop);
+        } else {
+          box.addEventListener('click', () => (box.dataset.playing === 'true' ? stop() : start()));
+        }
+      });
+    </script>
   </body>
 </html>
